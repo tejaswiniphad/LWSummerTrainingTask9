@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>Delete Resources</title>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');   
+#head{
+    font-family: 'Amatic SC', cursive;
+  background-color: lightblue;    
+  text-align: center;
+  margin: -10px;
+  padding: 5px;
+  font-size: 50px;
+  height: 80px;
+  background-image: linear-gradient(to right, #c2bbfa , #4c76eb);
+} 
+#left
+    {list-style-type: none;
+        border-radius: 15px; 
+  margin: 2px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #153aa0;
+  opacity: 0.95;
+  
+}
+#left a {
+    border-color: ivory;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 600;
+    font-size: 35px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 22px;
+  margin: 2px;
+  text-decoration: none;
+  width: inherit;
+  
+  
+}
+
+#left a:hover {
+  background-color: #988ff1;
+  border-radius: 15px;
+  color: black;
+}
+#main{
+    background-image: url(kube3.png);
+    
+    width:auto;
+    margin: -8px;
+    height: 800px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    
+    }
+
+#leftbox{
+    
+      float: left;
+  width:25%;
+  height: 500px;
+  
+}
+#middle{
+   
+   
+    opacity:1;
+    width:50%;
+    margin: 0 auto;
+    height: 500px;
+    float:left;
+    
+    
+}
+#right p{
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
+    padding: 10px;
+    
+}
+#right h1{
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    padding: 10px;
+}
+#right{
+    margin-top: 2px;
+    border-radius: 15px;
+    background-color: #d8c3fa;
+    float: left;
+    width:25%;
+    height: 500px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+.box5{
+        font-family: 'Courier Prime', monospace;
+        font-size: 20px;
+        position: relative;
+        margin:0 auto;
+        margin-top: 20px;
+        width: 80%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        input[type=text], select {
+            font-family: 'Courier Prime', monospace;
+             width: 100%;
+             padding: 12px 20px;
+             margin: 8px 0;
+             display: inline-block;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             box-sizing: border-box;
+            }
+            input[type=number], select {
+            font-family: 'Courier Prime', monospace;
+             width: 100%;
+             padding: 12px 20px;
+             margin: 8px 0;
+             display: inline-block;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             box-sizing: border-box;
+            }
+        .button{
+            font-family: 'Courier Prime', monospace;
+                 width: 100%;
+                background-color: #153aa0;
+                color: white;
+                padding: 10px ;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                font-size: 20px;
+                
+            }
+        .button:hover{
+            background-color: #8c65b9;
+            cursor: pointer;
+        }
+</style>
+
+</head>
+<script>
+
+function delete_service() {
+            var name = document.getElementById("b1").value;
+            var type = document.getElementById("b2").value;
+            
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","http://10.0.2.15/cgi-bin/del.py?n="+name+"&t="+type,true);
+            xhr.send();
+            xhr.onload=function(){
+                var output1=xhr.responseText;
+                alert("!...output...!"+"\n"+output1);    
+            } 
+        }
+</script>
+<body>
+
+<div id="head">
+    Kubernetes 
+</div>
+<div id="main">
+    
+    <div id="leftbox">
+            <div id="left">
+                <a href="task9.html">k8s</a>  
+            <a href="pod.html">Create Pod</a>
+            <a href="launch_dep.html">LAUNCH DEPLOYMENT</a>
+            <a href="service.html">EXPOSE SERVICES</a>
+            <a href="scale_dep.html">SCALE REPLICAS</a>
+            <a href="del.html">DELETE RESOURCES</a>
+           
+    </div> <!--left-->
+    </div><!--leftbox-->
+<div id="middle">
+    <div class="box5">
+        <h2>DELETE RESOURCES</h2>
+        ENTER RESOURCE NAME:<input id="b1" type="text" placeholder="enter name" />
+        ENTER RESOURCE TYPE:<input id="b2" type="text" placeholder="enter service type" />
+        <input type="button" value="delete resources" class="button" onclick="delete_service()">
+    </div>
+</div>
+    <div id="right">
+        <h1>OUR WEBSITE CAN PERFORM VARIOUS ACTIONS</h1>
+        <p>• It can launch pods with specific name given by user<br>
+            • Run deployement using image and name given by user<br>
+            • Expose services on given user input port number<br>
+            • Scale the replica according to user need<br>
+            • Delete complete environment created<br>
+            • Delete specific resource given by user</p>
+    </div><!--right-->
+</div>
+</body>
+</html>
